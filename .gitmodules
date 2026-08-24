@@ -1,0 +1,4 @@
+[submodule "pi2.nvim"]
+	path = pi2.nvim
+	url = https://github.com/saya-ashen/agent-workbench.nvim
+	branch = main

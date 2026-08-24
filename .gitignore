@@ -1,0 +1,25 @@
+# Local agent and worktree state
+/.kiss-worktrees/
+/.omc/
+/.pi/
+
+# Generated integration-test and report artifacts
+/tmp/
+/reports/
+
+# Runtime state and credentials must never be committed
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.sock
+*.pem
+*.key
+.env
+.env.*
+
+# Editor and OS files
+.DS_Store
+*.swp
+*.swo
+*~

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo=$(CDPATH='' cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+workbench_repo=${AGENT_WORKBENCH_PATH:-"$repo/pi2.nvim"}
+nvim_bin=${NVIM_BIN:-nvim}
+exec "$nvim_bin" \
+  --cmd "set runtimepath^=${workbench_repo}" \
+  --cmd "set runtimepath^=${repo}" \
+  --cmd "set packpath^=${workbench_repo}" \
+  --cmd "set packpath^=${repo}" \
+  --cmd "lua local model = vim.env.KISS_SORCAR_MODEL; local run_options = model and model ~= '' and { model = model } or {}; require('kiss-sorcar.agent_workbench').register(); require('agent-workbench').setup({ backend = 'sorcar', backend_options = { path = vim.fn.expand('~/.kiss/sorcar.sock'), run_options = run_options } })" \
+  "$@"
