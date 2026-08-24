@@ -97,7 +97,7 @@ The Agent Workbench backend accepts `path`, `tab_id`, `run_options`, `reconnect`
 
 ## Security boundary
 
-This plugin is a same-user client of the KISS daemon. It does **not** sandbox provider CLIs, approve their tool calls, or confine filesystem/network access. Review [SECURITY.md](SECURITY.md) before using CLI-backed KISS models on a real workspace.
+This plugin is a same-user client of the KISS daemon. Review [SECURITY.md](SECURITY.md) before using CLI-backed KISS models on a real workspace.
 
 Do not commit or attach KISS databases, daemon logs, TLS keys, auth logs, or generated `tmp/` fixtures to bug reports.
 
