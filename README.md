@@ -8,6 +8,19 @@ An experimental Neovim client for the local [KISS Sorcar](https://github.com/kse
 
 This is an independent community project. It is not an official KISS client.
 
+## Demo
+
+KISS Sorcar running as an Agent Workbench backend:
+
+- native daemon integration;
+- streamed execution and lifecycle tracking;
+- live steering and guarded actions;
+- reconnect-aware state handling.
+
+Full demonstration video:
+
+[Release demo video](https://github.com/saya-ashen/kiss-sorcar.nvim/releases)
+
 ## Features
 
 - Pure Lua NDJSON client over Sorcar's Unix-domain socket
@@ -18,6 +31,23 @@ This is an independent community project. It is not an official KISS client.
 - Workspace-filtered history with exact chat/task resume
 - Native Agent Workbench transcript and session integration
 - A dependency-free headless test harness plus opt-in real-daemon tests
+
+## Built with KISS Sorcar
+
+This project was developed through extensive dogfooding of KISS Sorcar itself.
+
+The client was built by using Sorcar for protocol investigation, implementation,
+testing, and review. The integration focuses on making a coding-agent frontend
+work with a backend that has a different execution and state model.
+
+Key design principles:
+
+- separate frontend sessions from backend-native identities;
+- preserve task, chat, and execution lifecycle semantics;
+- avoid unsafe retries or inferred state after uncertain disconnects;
+- represent freshness explicitly instead of hiding stale state.
+
+See [Built with KISS Sorcar](docs/BUILT_WITH_SORCAR.md) for development notes and reliability findings.
 
 ## Compatibility
 
@@ -50,10 +80,7 @@ With `lazy.nvim`:
     opts = {
         backend = "sorcar",
         backend_options = {
-            -- Defaults to $KISS_SORCAR_SOCK, then $KISS_HOME/sorcar.sock.
             path = vim.fn.expand("~/.kiss/sorcar.sock"),
-            -- Optional; omit to use the daemon's selected model.
-            -- run_options = { model = "provider/model" },
         },
     },
 }
@@ -72,59 +99,10 @@ Start or restart `kiss-web` after the directory containing the socket is mounted
 }
 ```
 
-Commands:
-
-- `:Sorcar` opens the client.
-- `:Sorcar {prompt}` opens the client and submits a task.
-- `:SorcarSteer {message}` steers the current running task.
-- `:SorcarStop` requests that the current task stop.
-
-## Configuration
-
-Standalone setup accepts:
-
-```lua
-require("kiss-sorcar").setup({
-    socket_path = vim.fn.expand("~/.kiss/sorcar.sock"),
-    work_dir = vim.fn.getcwd(),
-    tab_id = nil,
-    connect = true,
-    run_options = {},
-})
-```
-
-The Agent Workbench backend accepts `path`, `tab_id`, `run_options`, `reconnect`, and `reconnect_delays`. Effectful commands are never queued or replayed after an uncertain disconnect.
-
-## Security boundary
-
-This plugin is a same-user client of the KISS daemon. Review [SECURITY.md](SECURITY.md) before using CLI-backed KISS models on a real workspace.
-
-Do not commit or attach KISS databases, daemon logs, TLS keys, auth logs, or generated `tmp/` fixtures to bug reports.
-
 ## Development
 
-Clone dependencies and initialize the submodule:
-
-```sh
-git clone --recurse-submodules https://github.com/saya-ashen/kiss-sorcar.nvim
-cd kiss-sorcar.nvim
-```
-
-Run the dependency-free suite:
-
-```sh
-nvim --headless -u NONE -l tests/run.lua
-```
-
-Real-daemon tests are opt-in. Clone KISS separately and set `KISS_SOURCE_REPO`:
-
-```sh
-KISS_SOURCE_REPO=/path/to/kiss_ai KISS_REAL_DAEMON_TEST=1 \
-  ./tests/integration/run_control_plane.sh
-```
-
-See [docs/testing.md](docs/testing.md) for the complete matrix and [docs/protocol.md](docs/protocol.md) for the pinned protocol inventory.
+See [docs/testing.md](docs/testing.md) for the integration matrix and [docs/protocol.md](docs/protocol.md) for the pinned protocol inventory.
 
 ## License
 
-MIT. The `pi2.nvim` submodule has its own license and history in the Agent Workbench repository.
+MIT.
