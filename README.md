@@ -19,7 +19,7 @@ KISS Sorcar running as an Agent Workbench backend:
 
 Full demonstration video:
 
-[Watch the 57-second demo (MP4, 1080p)](https://github.com/saya-ashen/kiss-sorcar.nvim/releases/download/demo-2026-08-25/kiss-sorcar-agent-workbench-demo.mp4)
+https://github.com/user-attachments/assets/82df4bee-cf7d-4f84-85ea-6de707d93b40
 
 ## Features
 
