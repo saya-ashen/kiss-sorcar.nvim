@@ -1,4 +1,4 @@
-[submodule "pi2.nvim"]
-	path = pi2.nvim
-	url = https://github.com/saya-ashen/agent-workbench.nvim
+[submodule "agent-workbench.nvim"]
+	path = agent-workbench.nvim
+	url = https://github.com/saya-ashen/agent-workbench.nvim.git
 	branch = main

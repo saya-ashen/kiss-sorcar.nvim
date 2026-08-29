@@ -1,5 +1,5 @@
 local root = assert(vim.env.KISS_TEST_REPO)
-local workbench_root = root .. "/pi2.nvim"
+local workbench_root = root .. "/agent-workbench.nvim"
 package.path = table.concat({
   root .. "/lua/?.lua",
   root .. "/lua/?/init.lua",

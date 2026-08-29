@@ -15,6 +15,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Fake-daemon, headless UI, and opt-in isolated real-daemon test coverage.
 - Public installation, compatibility, contribution, and security documentation.
 
+### Changed
+
+- Renamed the bundled Agent Workbench submodule directory from `pi2.nvim` to `agent-workbench.nvim` and pinned it to the canonical `saya-ashen/agent-workbench.nvim` upstream.
+- Development launches opt into Agent Workbench's recommended keymap preset while keeping production defaults unchanged.
+
+### Fixed
+
+- Agent Workbench's workspace explorer no longer exposes Pi JSONL history while the Sorcar backend is active.
+- `scripts/nvim-dev` again honors `KISS_SORCAR_MODEL` and forwards all command-line arguments to Neovim.
+
 ### Security
 
 - Effectful commands fail closed across disconnects and are never replayed automatically.

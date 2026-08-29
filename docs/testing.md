@@ -477,7 +477,7 @@ Sorcar's `kiss-sorcar.backend` composes existing `Controller`, `State`, `TabLife
 Focused contract test:
 
 ```sh
-cd pi2.nvim
+cd agent-workbench.nvim
 PLENARY_PATH=$(nix eval --raw nixpkgs#vimPlugins.plenary-nvim.outPath) \
   nvim --headless -i NONE -u tests/minimal_init.lua \
   -c "lua require('plenary.test_harness').test_file('../tests/backend_spec.lua', { minimal_init = 'tests/minimal_init.lua' })"

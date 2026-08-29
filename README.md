@@ -105,4 +105,4 @@ See [docs/testing.md](docs/testing.md) for the integration matrix and [docs/prot
 
 ## License
 
-MIT.
+MIT. The `agent-workbench.nvim` submodule tracks the canonical [saya-ashen/agent-workbench.nvim](https://github.com/saya-ashen/agent-workbench.nvim) upstream and retains its own license and history.

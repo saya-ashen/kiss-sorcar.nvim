@@ -9,7 +9,7 @@ fi
 repo=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
 source_repo=${KISS_SOURCE_REPO:-"$repo/../kiss_ai"}
 [ -f "$source_repo/pyproject.toml" ] || { echo "KISS_SOURCE_REPO does not contain pyproject.toml: $source_repo" >&2; exit 2; }
-[ -f "$repo/pi2.nvim/lua/agent-workbench/init.lua" ] || { echo "Agent Workbench checkout missing: $repo/pi2.nvim" >&2; exit 2; }
+[ -f "$repo/agent-workbench.nvim/lua/agent-workbench/init.lua" ] || { echo "Agent Workbench checkout missing: $repo/agent-workbench.nvim" >&2; exit 2; }
 
 mkdir -p "$repo/tmp"
 fixture=$(mktemp -d "$repo/tmp/real-agent-workbench.XXXXXX")
@@ -56,7 +56,7 @@ done
 cd "$work_dir"
 env KISS_TEST_REPO="$repo" KISS_TEST_SOCKET="$socket_path" KISS_TEST_WORK_DIR="$work_dir" \
   KISS_TEST_EVENT_LOG="$event_log" KISS_TEST_MODEL="${KISS_TEST_MODEL:-codex/gpt-5.6-sol}" \
-  nvim --headless -i NONE -u "$repo/pi2.nvim/tests/minimal_init.lua" -l "$repo/tests/integration/agent_workbench.lua"
+  nvim --headless -i NONE -u "$repo/agent-workbench.nvim/tests/minimal_init.lua" -l "$repo/tests/integration/agent_workbench.lua"
 
 kill -TERM "$daemon_pid"
 wait "$daemon_pid"
